@@ -1,0 +1,7 @@
+---
+- name: Installing MongoDb
+  hosts: all
+  remote_user: wagmaster
+
+  roles:
+    - setup

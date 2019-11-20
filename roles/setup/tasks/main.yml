@@ -1,0 +1,5 @@
+---
+- name: Install gnupg and its required libraries using the following command
+  apt:
+    name: gnupg
+    state: present
