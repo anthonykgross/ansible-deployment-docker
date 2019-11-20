@@ -5,13 +5,32 @@
       - make
     state: present
 
+- name: Create new user with uid 1000
+  user:
+    name: johnd
+    uid: 1000
+
 - name: Checkout out the project
   git:
     repo: https://github.com/anthonykgross/rabbitmq-symfony-python.git
-    dest: /home/myuser/rabbitmq-symfony-python
+    dest: /home/johnd/rabbitmq-symfony-python
+    update: yes
     accept_hostkey: yes
+
+- name: Recursively change ownership of a directory
+  file:
+    path: /home/johnd
+    state: directory
+    recurse: yes
+    owner: johnd
+    group: johnd
+
+- name: Stop project
+  make:
+    chdir: /home/johnd/rabbitmq-symfony-python
+    target: stop
 
 - name: Run project
   make:
-    chdir: /home/myuser/rabbitmq-symfony-python
+    chdir: /home/johnd/rabbitmq-symfony-python
     target: start
