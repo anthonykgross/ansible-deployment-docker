@@ -1,0 +1,17 @@
+---
+- name: Install project dependencies
+  apt:
+    pkg:
+      - make
+    state: present
+
+- name: Checkout out the project
+  git:
+    repo: https://github.com/anthonykgross/rabbitmq-symfony-python.git
+    dest: /home/myuser/rabbitmq-symfony-python
+    accept_hostkey: yes
+
+- name: Run project
+  make:
+    chdir: /home/myuser/rabbitmq-symfony-python
+    target: start

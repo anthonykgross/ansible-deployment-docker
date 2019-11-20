@@ -1,7 +1,9 @@
 ---
-- name: Installing MongoDb
+- name: Install project
   hosts: all
-  remote_user: wagmaster
+  remote_user: root
 
   roles:
-    - setup
+    - docker
+    - docker-compose
+    - project
